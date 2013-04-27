@@ -1,11 +1,84 @@
 set nocompatible " be iMproved
 filetype off " required!
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/project/vimplugins/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
+
+" original repos on github
+" github上的用户写的插件，使用这种用户名+repo名称的方式
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+Bundle 'Lokaltog/vim-powerline.git'
+
+" vimscripts的repo使用下面的格式，直接是插件名称
 " vim-scripts repos
-Bundle 'vim-plugin-foo'
-Bundle 'vim-plugin-bar'
+Bundle 'taglist.vim'
+Bundle 'SuperTab'
+Bundle 'vimwiki'
+Bundle 'winmanager'
+Bundle 'bufexplorer.zip'
+Bundle 'The-NERD-tree'
+Bundle 'matrix.vim--Yang'
+Bundle 'FencView.vim'
+Bundle 'Conque-Shell'
+Bundle 'Vimpress'
+Bundle 'Markdown'
+Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
+Bundle 'c.vim'
+Bundle 'snipMate'
+Bundle 'nerdtree-ack'
+Bundle 'mayansmoke'
+Bundle 'tlib'
+Bundle 'peaksea'
+Bundle 'ack.vim'
+Bundle 'vim-coffee-script'
+Bundle 'bufexplorer.zip'
+Bundle 'ctrlp.vim'
+Bundle 'tlib'
+Bundle 'vim-less'
+Bundle 'mayansmoke'
+Bundle 'vim-addon-mw-utils'
+Bundle 'lightdiff'
+"Bundle 'project.vim'
+Bundle 'Speech'
+Bundle 'slide-show'
+Bundle 'google_prettify.vim'
+Bundle 'gccsingle.vim'
+Bundle 'TagmaTips'
+Bundle 'statusline.vim'
+Bundle 'bad-whitespace'
+Bundle 'Threesome'
+Bundle 'ctags_cache'
+Bundle 'slide-show'
+
+" non github reposo
+" " 非github的插件，可以直接使用其git地址
+Bundle 'git://git.wincent.com/command-t.git'
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" vundle主要就是上面这个四个命令，
+" 例如BundleInstall是全部重新安装，BundleInstall!则是更新
+" 一般安装插件的流程为，先BundleSearch一个插件，然后在列表中选中，按i安装
+" 安装完之后，在vimrc中，添加Bundle
+" 'XXX'，使得bundle能够加载，这个插件，同时如果
+" 需要配置这个插件，也是在vimrc中设置即可
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+"
 filetype plugin indent on " required!
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
