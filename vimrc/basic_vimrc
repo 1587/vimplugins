@@ -5,17 +5,46 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-
+Bundle 'simplyzhao/cscope_maps.vim'
 " original repos on github
 " github上的用户写的插件，使用这种用户名+repo名称的方式
+
+"desc :fugitive.vim may very well be the best Git wrapper of all time
+"usage:http://vimcasts.org/episodes/fugitive-vim---a-complement-to-command-line-git/
 Bundle 'tpope/vim-fugitive'
+
+"desc :EasyMotion provides a much simpler way to use some motions in vim. It
+"      takes the <number> out of <number>w or <number>f{char} by highlighting all
+"      possible choices and allowing you to press one key to jump directly to the
+"      target.
+"usage:https://github.com/Lokaltog/vim-easymotion
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
+"let g:EasyMotion_leader_key = ','
+"desc :Powerline is a utility plugin which allows you to create
+"      better-looking, more functional vim statuslines. See the screenshots below
+"      for a demonstration of the plugin's capabilities.
+"usage:
 Bundle 'Lokaltog/vim-powerline.git'
+if has("gui_running")
+    let g:Powerline_symbols = 'fancy'
+endif
+set fillchars+=stl:\ ,stlnc:\
 
 " vimscripts的repo使用下面的格式，直接是插件名称
 " vim-scripts repos
+Bundle 'YankRing.vim'
+Bundle 'Mark'
+Bundle 'a.vim'
+Bundle 'sketch.vim'
+Bundle 'OmniCppComplete'
+Bundle 'DoxygenToolkit.vim'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'VOoM'
+Bundle 'The-NERD-Commenter'
+Bundle 'The-NERD-tree'
+Bundle 'NERD_tree-Project'
+Bundle 'FindInNERDTree'
 Bundle 'taglist.vim'
 Bundle 'SuperTab'
 Bundle 'vimwiki'
@@ -55,9 +84,9 @@ Bundle 'Threesome'
 Bundle 'ctags_cache'
 Bundle 'slide-show'
 
-" non github reposo
-" " 非github的插件，可以直接使用其git地址
-Bundle 'git://git.wincent.com/command-t.git'
+"" non github reposo
+"" " 非github的插件，可以直接使用其git地址
+"Bundle 'git://git.wincent.com/command-t.git'
 "
 " Brief help
 " :BundleList          - list configured bundles
@@ -74,7 +103,120 @@ Bundle 'git://git.wincent.com/command-t.git'
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 "
+" Enable filetype plugins
 filetype plugin indent on " required!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GUI related
+set background=dark
+if has("gui_running")
+    colorscheme peaksea
+else
+    colorscheme desert
+endif
+
+" Set font according to system
+if has("mac") || has("macunix")
+    set gfn=Menlo:h14
+    set shell=/bin/bash
+elseif has("win16") || has("win32")
+    set gfn=Bitstream\ Vera\ Sans\ Mono:h10
+elseif has("linux")
+    set gfn=Monospace\ 10
+    set shell=/bin/bash
+endif
+
+
+" Sets how many lines of history VIM has to remember
+set history=700
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+"nmap <leader>w :w!<cr>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the WiLd menu
+set wildmenu
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+else
+    set wildignore+=.git\*,.hg\*,.svn\*
+endif
+
+"Always show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=2
+
+set laststatus=2
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+" Highlight search results
+set hlsearch
+" Makes search act like search in modern browsers
+set incsearch 
+" Don't redraw while executing macros (good performance config)
+set lazyredraw 
+"" For regular expressions turn magic on
+set magic
+" Show matching brackets when text indicator is over them
+set showmatch 
+" How many tenths of a second to blink when matching brackets
+set mat=2
+"" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+"" Add a bit extra margin to the left
+"set foldcolumn=1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+try
+    colorscheme desert
+    catch
+endtry
+
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -82,3 +224,66 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+" Return to last edit position when opening files (You want this!)
+""autocmd BufReadPost *
+""     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+""     \   exe "normal! g`\"" |
+""     \ endif
+""
+""
+"Remember info about open buffers on close
+set viminfo^=%
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.c :call DeleteTrailingWS()
+autocmd BufWrite *.h :call DeleteTrailingWS()
+"FuzzyFinder – Ctrl + Shift + R
+map <C-S-R> :FufFileRecursive<CR>
+"map ,, :FufCoverageFile <cr> 
+let g:fuf_coveragefile_globPatterns = ['**/*.erb'] 
