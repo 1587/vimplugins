@@ -6,6 +6,7 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 Bundle 'simplyzhao/cscope_maps.vim'
+source ~/.vim/vimrc/cscopedb.vimrc
 " original repos on github
 " github上的用户写的插件，使用这种用户名+repo名称的方式
 
@@ -109,9 +110,9 @@ filetype plugin indent on " required!
 " => General
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI related
-set background=dark
+"set background=dark
 if has("gui_running")
-    colorscheme peaksea
+    colorscheme desert
 else
     colorscheme desert
 endif
@@ -287,3 +288,7 @@ autocmd BufWrite *.h :call DeleteTrailingWS()
 map <C-S-R> :FufFileRecursive<CR>
 "map ,, :FufCoverageFile <cr> 
 let g:fuf_coveragefile_globPatterns = ['**/*.erb'] 
+
+set formatoptions=ql
+set paste
+set tabstop=4

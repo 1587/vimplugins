@@ -1,3 +1,0 @@
-set runtimepath+=~/project/vimplugins
-source ~/project/vimplugins/vimrc/basic_vimrc
-
