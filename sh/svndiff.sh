@@ -1,0 +1,8 @@
+# 配置你喜欢的diff程序路径
+DIFF="vimdiff"
+# SVN diff命令会传入两个文件的参数
+LEFT=${7}
+RIGHT=${6}
+# 拼接成diff命令所需要的命令格式
+$DIFF $LEFT $RIGHT
+
