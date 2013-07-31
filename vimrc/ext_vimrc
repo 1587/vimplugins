@@ -1,0 +1,92 @@
+call pathogen#infect('~/.vim_runtime/my_plugin')
+ let NERDTreeQuitOnOpen=1          "打开文件后是否关闭NerdTree窗口
+ let NERDTreeShowLineNumbers=1     "是否默认显示行号
+ let NERDTreeWinSize=50             "窗口宽
+ let NERDChristmasTree=1
+ let NERDTreeAutoCenter=1
+ let NERDTreeBookmarksFile=$VIM.'\Data\NerdBookmarks.txt'
+ let NERDTreeMouseMode=2
+ let NERDTreeShowBookmarks=1
+ let NERDTreeShowFiles=1
+ let NERDTreeShowHidden=1
+ let NERDTreeShowLineNumbers=1
+ let NERDTreeWinPos='left'
+ let NERDTreeIgnore=['\.vim$', '\~$', '.d$', '.o$']
+ map <leader>nn :NERDTreeToggle<cr>
+ map <leader>nb :NERDTreeFromBookmark
+ map <leader>nf :NERDTreeFind<cr>
+
+ nnoremap <F1> :NERDTreeToggle<cr>
+
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ "" => taglist config
+ "" Annotate strings with gettext http://amix.dk/blog/post/19678
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " 按照名称排序
+ let Tlist_Sort_Type = "name"
+ "" 在右侧显示窗口
+ let Tlist_Use_Right_Window = 1
+ "" 压缩方式
+ let Tlist_Compart_Format = 1
+ " 如果只有一个buffer，kill窗口也kill掉buffer
+ let Tlist_Exit_OnlyWindow = 1
+ " 不要关闭其他文件的tags
+ let Tlist_File_Fold_Auto_Close = 0
+ " 函数列表的宽度
+ let Tlist_WinWidth = 50
+
+ let Tlist_WinHeight = 10
+ let Tlist_Display_Prototype = 1
+ let Tlist_Compact_Format = 1
+ let Tlist_Close_On_Select = 0
+
+ map <leader>t :Tlist<cr><C-L>
+ " 带开或者关闭函数列表窗口
+ map <F2> :Tlist<cr><C-L>
+ " 不要显示折叠树
+ let Tlist_Enable_Fold_Column = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ "" => vim-powerline.vim config
+ "" Source: https://github.com/Lokaltog/vim-powerline
+ "" Powerline is a utility plugin which allows you to create better-looking,
+ "" more functional vim statuslines. See the screenshots below for
+ "" a demonstration of the plugin's capabilities.
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ if has("gui_running")
+     let g:Powerline_symbols = 'fancy'
+ endif
+
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " cscope setting
+ "
+ " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ "set cscopequickfix=s-,c-,d-,i-,t-,e-
+ "
+
+ if has("cscope")
+     set csprg=/usr/bin/cscope
+     set csto=1
+     set cst
+     set nocsverb
+     " add any database in current directory
+     if filereadable("cscope.out")
+         cs add cscope.out
+     endif
+     set csverb
+
+ endif
+
+nmap <C-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-f> :cs find f <C-R>=expand("<cfile>")<CR><CR>
+ nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-d> :cs find d <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " NERD_commenter.vim setting
+ "
+ " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ let NERDShutUp=1
+ let g:ConqueTerm_Color = 1
